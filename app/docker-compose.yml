@@ -8,6 +8,9 @@ services:
       POSTGRES_DB: weazzy
       POSTGRES_USER: user
       POSTGRES_PASSWORD: password
+    networks:
+      custom_net:
+        ipv4_address: 10.5.0.5
     ports:
       - "5432:5432"
     volumes:
@@ -20,6 +23,9 @@ services:
       PGADMIN_DEFAULT_EMAIL: admin@admin.org
       PGADMIN_DEFAULT_PASSWORD: admin
       PGADMIN_CONFIG_SERVER_MODE: 'False'
+    networks:
+      custom_net:
+        ipv4_address: 10.5.0.6
     ports:
       - "5050:80"
     volumes:
@@ -31,3 +37,12 @@ services:
 volumes:
   postgres: {}
   pgadmin: {}
+
+
+networks:
+  custom_net:
+    driver: bridge  # тип связи между контейнерами
+    ipam:
+      config:
+        - subnet: 10.5.0.0/16  # подсеть в формате CIDR , представляющая сегмент сети
+          gateway: 10.5.0.1
