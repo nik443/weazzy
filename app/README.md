@@ -8,3 +8,4 @@
 По alembic
 1) создать рабочую директорию alembic: alembic init -t async alembic 
 2) создать новую асинхронную миграцию: alembic revision --autogenerate -m "имя миграции"
+3) применить последнюю миграцию alembic upgrade head

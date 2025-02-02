@@ -10,9 +10,8 @@ class RunConfig(BaseModel):
 
 
 class DatabaseConfig(BaseModel):
-    # url: str = os.getenv("DB__URL")
     url: str = "postgresql+asyncpg://postgres:1111@localhost:5432/weazzy"
-    echo: bool = bool(os.getenv("DB__ECHO"))
+    echo: bool = True
     echo_pool: bool = False
     max_overflow: int = 10
     pool_size: int = 50
@@ -27,14 +26,8 @@ class DatabaseConfig(BaseModel):
 
 
 class Setting(BaseSettings):
-    # model_config = SettingsConfigDict(
-    #     env_file=".env-template",  # файл с кредами
-    #     case_sensitive=False,  # учитывать регистр имен кредов
-    #     env_nested_delimiter="__",  # разделитель вложенных значений env
-    # )
     run: RunConfig = RunConfig()
     db: DatabaseConfig = DatabaseConfig()
 
 
 settings = Setting()
-a = 4
